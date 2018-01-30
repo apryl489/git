@@ -374,6 +374,7 @@ static int checkout_worktree(const struct checkout_opts *opts,
 			       NULL);
 
 	enable_delayed_checkout(&state);
+	enable_fscache(1);
 	if (pc_workers > 1)
 		init_parallel_checkout();
 	for (pos = 0; pos < active_nr; pos++) {
@@ -400,6 +401,7 @@ static int checkout_worktree(const struct checkout_opts *opts,
 		errs |= run_parallel_checkout(&state, pc_workers, pc_threshold,
 					      NULL, NULL);
 	mem_pool_discard(&ce_mem_pool, should_validate_cache_entries());
+	enable_fscache(0);
 	remove_marked_cache_entries(&the_index, 1);
 	remove_scheduled_dirs();
 	errs |= finish_delayed_checkout(&state, &nr_checkouts);
