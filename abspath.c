@@ -103,6 +103,9 @@ char *strbuf_realpath(struct strbuf *resolved, const char *path,
 			goto error_out;
 	}
 
+	if (platform_strbuf_realpath(resolved, path))
+		return resolved->buf;
+
 	strbuf_addstr(&remaining, path);
 	get_root_part(resolved, &remaining);
 
