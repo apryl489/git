@@ -104,7 +104,7 @@ test_expect_success 'clean up' '
 '
 
 test_expect_success 'adding another file' '
-	cp "$TEST_DIRECTORY"/diff-lib/README.md path0/README &&
+	cp "$TEST_DIRECTORY"/diff-lib/README path0/README &&
 	git add path0/README &&
 	git commit -m add2 -a
 '
