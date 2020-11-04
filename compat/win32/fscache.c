@@ -357,7 +357,7 @@ static void fscache_clear(struct fscache *cache)
 {
 	mem_pool_discard(&cache->mem_pool, 0);
 	mem_pool_init(&cache->mem_pool, 0);
-	hashmap_free(&cache->map);
+	hashmap_clear(&cache->map);
 	hashmap_init(&cache->map, (hashmap_cmp_fn)fsentry_cmp, NULL, 0);
 	cache->lstat_requests = cache->opendir_requests = 0;
 	cache->fscache_misses = cache->fscache_requests = 0;
@@ -534,7 +534,7 @@ void fscache_disable(void)
 			cache->lstat_requests, cache->opendir_requests,
 			cache->fscache_requests, cache->fscache_misses);
 		mem_pool_discard(&cache->mem_pool, 0);
-		hashmap_free(&cache->map);
+		hashmap_clear(&cache->map);
 		free(cache);
 	}
 
